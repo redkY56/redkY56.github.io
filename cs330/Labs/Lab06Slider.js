@@ -26,15 +26,15 @@ function init()
     ];
 
     colors=[
-    vec4(     ,     ,     , 1.0 ),
-    vec4(     ,     ,     , 1.0 ),
-    vec4(     ,     ,     , 1.0 ),
-    vec4(     ,     ,     , 1.0 ),
-    vec4(     ,     ,     , 1.0 ),
-    vec4(     ,     ,     , 1.0 ),
-    vec4(     ,     ,     , 1.0 ),
-    vec4(     ,     ,     , 1.0 ),
-    vec4(     ,     ,     , 1.0 )
+    vec4(0.859, 0.451, 0.588, 1.0 ),
+    vec4(0.051, 0.522, 0.11, 1.0 ),
+    vec4(1, 0.922, 0.384, 1.0 ),
+    vec4(0.333, 0.78, 0.745, 1.0 ),
+    vec4(0.212, 0.22, 0.522, 1.0 ),
+    vec4(0.859, 0.176, 0.176, 1.0 ),
+    vec4(0.518, 0.322, 0.541, 1.0 ),
+    vec4(0.02, 1, 0.984, 1.0 ),
+    vec4(0.486, 1, 0.545, 1.0 )
     ];
     
     //
@@ -69,8 +69,12 @@ function init()
     gl.enableVertexAttribArray( colorLoc );
 
     // slider event listener
-
-    render();
+	render();
+	
+	document.getElementById("slider").onchange = function(event) {
+		sliderVal = parseInt(event.target.value);
+		render();
+	};
 };
 
 function render() {
@@ -79,5 +83,5 @@ function render() {
     // use the variable from the slider event listener to determine how many
     // points to render
 
-    gl.drawArrays( gl.POINTS, 0,      );
+    gl.drawArrays( gl.POINTS, 0, sliderVal);
 }
