@@ -8,7 +8,7 @@ var thetaLoc;
 var color = vec4(0.0, 0.0, 1.0, 1.0);
 var colorLoc;
 
-var delay = 100;
+var delay = 1;
 var rotation = true;
 
 init();
@@ -32,9 +32,9 @@ function init()
     gl.useProgram(program);
 
     var vertices = [
-        vec2(      ,      ),
-        vec2(      ,      ),
-        vec2(      ,      )
+        vec2(0,1),
+        vec2(1,0),
+        vec2(-1,0)
     ];
 
 
@@ -54,18 +54,39 @@ function init()
 
     //define the uniform variable in the shader, aColor
 
-
+    colorLoc = gl.getUniformLocation( program, "aColor" );
 
    // button listener here, toggle rotation
 
-
+    // Initialize event handlers
+    document.getElementById("Rotation").onclick = function () {
+        rotation = !rotation;
+    };
 
    // keyboard listener here
    // '1' = toggle rotation
    // '2' = triangle is red (use the variable named color)
    // '3' = triangle is green (use the variable named color)
 
+    window.onkeydown = function(event) {
+        var key = String.fromCharCode(event.keyCode);
+        switch(key) {
+          case '1':
+            rotation = !rotation;
+            break;
 
+          case '2':
+            color = vec4(1.0, 0.0, 0.0, 1.0);
+            break;
+
+          case '3':
+            color = vec4(0.0, 1.0, 0.0, 1.0);
+            break;
+		  case '4':
+            color = vec4(0.0, 0.0, 1.0, 1.0);
+            break;
+        }
+    };
 
     render();
 };
@@ -74,7 +95,7 @@ function render()
 {
     gl.clear(gl.COLOR_BUFFER_BIT);
 
-    theta += (rotation ? 0.1 : 0.0);
+    theta += (rotation ? 0.01 : 0.0);
     gl.uniform1f(thetaLoc, theta);
 
     gl.uniform4fv(colorLoc, color);
