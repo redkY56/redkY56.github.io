@@ -1,8 +1,16 @@
 "use strict";
 var gl;
-var points;
-var colors;
-var sliderVal = 0;
+
+
+var arrayP = [
+			
+				];
+				
+var arrayQ = [
+			
+				];
+
+var delay = 1;
 
 init();
 function init()
@@ -51,4 +59,8 @@ function render() {
     gl.clear( gl.COLOR_BUFFER_BIT );
 	gl.drawArrays( gl.POINTS, 0, points.length );
 	gl.drawArrays( gl.LINE_STRIP, 0, points.length );
+	
+	    setTimeout(
+        function (){requestAnimationFrame(render);}, delay
+    );
 }
