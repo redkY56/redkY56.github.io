@@ -13,7 +13,7 @@
 Oops ... your browser doesn't support the HTML5 canvas element
 </canvas>
 
-<button id="Morph">Morph</button>
+<button id="Morph">Toggle Morph On-Off</button>
 
 <script id="vertex-shader" type="x-shader/x-vertex">
 #version 300 es
@@ -24,16 +24,18 @@ out vec4 vColor;
 void
 main()
 {
-  gl_PointSize = 1.0;
+  gl_PointSize = 20.0;
   gl_Position = aPosition;
   
-  // p
+  vColor = aColor;
+  
+  /*
   gl_position.x = t*iPosition.x + (1.0-t)*uPosition.x;
   gl_position.y = t*iPosition.y + (1.0-t)*uPosition.y;
   gl_position.z = 0.0;
   gl_position.w = 1.0;
+	*/
   
-  vColor = aColor;
 }
 </script>
 
