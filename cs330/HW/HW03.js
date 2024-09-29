@@ -8,7 +8,7 @@ var arrayQ = [];
 var arrayT = [];
 var colors = [];
 
-var t;
+var t = 0.0;
 var tLoc;
 var colorLoc;
 var color;
@@ -62,10 +62,14 @@ function init()
 
     // Associate out shader variables with our data buffer
 
-    var positionLoc = gl.getAttribLocation( program, "iPosition" );
-	var positionLoc = gl.getAttribLocation( program, "uPosition" );
-    gl.vertexAttribPointer( positionLoc , 2, gl.FLOAT, false, 0, 0 );
-    gl.enableVertexAttribArray( positionLoc );
+    var iPositionLoc = gl.getAttribLocation( program, "iPosition" );
+	var uPositionLoc = gl.getAttribLocation( program, "uPosition" );
+	
+    gl.vertexAttribPointer( iPositionLoc , 2, gl.FLOAT, false, 0, 0 );
+    gl.enableVertexAttribArray( iPositionLoc );
+	
+    gl.vertexAttribPointer( uPositionLoc , 2, gl.FLOAT, false, 0, 0 );
+    gl.enableVertexAttribArray( uPositionLoc );
 	
 	tLoc = gl.getUniformLocation( program, "t" );
 	
@@ -88,14 +92,19 @@ function init()
 
 function render() {
 
-	
 	gl.clear(gl.COLOR_BUFFER_BIT);
 
     gl.uniform1f(tLoc, t);
 
     gl.uniform4fv(colorLoc, color);
 
-    gl.drawArrays(gl.TRIANGLES, 0, 3);
+    gl.drawArrays(gl.LINE_LOOP, 0, 3);
+	
+	if (tLoc => 0.0) { //if t is equal to 0.0
+		tLoc += 0.1;
+	} else if (tLoc <= 1.0) { //if t is equal to 1.0
+		tLoc -= 0.1;
+	}
 	
 	/*
     gl.clear( gl.COLOR_BUFFER_BIT );
