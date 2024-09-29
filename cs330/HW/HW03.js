@@ -100,11 +100,13 @@ function render() {
 
     gl.drawArrays(gl.LINE_LOOP, 0, 3);
 	
+	/*
 	if (tLoc => 0.0) { //if t is equal to 0.0
 		tLoc += 0.1;
 	} else if (tLoc <= 1.0) { //if t is equal to 1.0
 		tLoc -= 0.1;
 	}
+	*/
 	
 	/*
     gl.clear( gl.COLOR_BUFFER_BIT );
