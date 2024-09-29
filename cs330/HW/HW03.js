@@ -1,12 +1,17 @@
 "use strict";
 var gl;
 
-var t = 0;
 var delay = 1;
 
 var arrayP = [];
 var arrayQ = [];
+var arrayT = [];
 var colors = [];
+
+var t;
+var tLoc;
+var colorLoc;
+var color;
 
 init();
 function init()
@@ -36,6 +41,8 @@ function init()
 			vec4(0.0, 0.0, 1.0, 1.0)
 				];
 
+	color = vec4(1.0, 0.0, 0.0, 1.0);
+
 	//
     //  Configure WebGL
     //
@@ -55,10 +62,17 @@ function init()
 
     // Associate out shader variables with our data buffer
 
-    var positionLoc = gl.getAttribLocation( program, "aPosition" );
+    var positionLoc = gl.getAttribLocation( program, "iPosition" );
+	var positionLoc = gl.getAttribLocation( program, "uPosition" );
     gl.vertexAttribPointer( positionLoc , 2, gl.FLOAT, false, 0, 0 );
     gl.enableVertexAttribArray( positionLoc );
+	
+	tLoc = gl.getUniformLocation( program, "t" );
+	
+	 //define the uniform variable in the shader, aColor
 
+    colorLoc = gl.getUniformLocation( program, "aColor" );
+/*
 	// a color buffer is created and attached
     var cbufferId = gl.createBuffer();
     gl.bindBuffer( gl.ARRAY_BUFFER, cbufferId );
@@ -66,21 +80,58 @@ function init()
     var colorLoc = gl.getAttribLocation( program, "aColor" );
     gl.vertexAttribPointer( colorLoc, 4, gl.FLOAT, false, 0, 0 );
     gl.enableVertexAttribArray( colorLoc );
+*/
 
 	render();
 };
 
 
 function render() {
-    gl.clear( gl.COLOR_BUFFER_BIT );
-	gl.drawArrays( gl.POINTS, 0, arrayP.length );
-	gl.drawArrays( gl.LINE_LOOP, 0, arrayP.length );
+
 	
-	//add: t is going to go from 0 to 1, and then back to 0
+	gl.clear(gl.COLOR_BUFFER_BIT);
+
+    gl.uniform1f(tLoc, t);
+
+    gl.uniform4fv(colorLoc, color);
+
+    gl.drawArrays(gl.TRIANGLES, 0, 3);
 	
 	/*
+    gl.clear( gl.COLOR_BUFFER_BIT );
+	gl.drawArrays( gl.POINTS, 0, arrayT.length );
+	gl.drawArrays( gl.LINE_LOOP, 0, arrayT.length );
+	*/
 	    setTimeout(
         function (){requestAnimationFrame(render);}, delay
     );
-	*/
+	
 }
+
+// earlier attempt at creating an array but this was being done in the html script
+/*
+	arrayT = [];
+	//control t
+	while (true){
+		if (t == 0.0) { //if t is equal to 0.0
+			t += 0.1;
+		} else if (t == 1.0) { //if t is equal to 1.0
+			t -= 0.1;
+		}
+			
+		//create arrayT
+		//conditions if i equals 0 or 1
+		if (t == 0.0) {
+			arrayT = arrayP;
+		} else if (t == 1.0) {
+			arrayT = arrayQ;
+		} else { //if t is not 0 or 1
+			//varT  t * P + (1-t) * Q 	is equivalent to	P + t * ( Q – P )
+			for (var i = 0; i < arrayP.length; i++){
+				var newPoint = add( mult(t, arrayP[i]), mult(1-t, arrayQ[i]));
+				arrayT.push(newPoint);
+			}
+		}
+	
+	}
+*/
