@@ -10,6 +10,7 @@ var colors = [];
 
 var t = 0.0;
 var tLoc;
+
 var colorLoc;
 var color;
 
