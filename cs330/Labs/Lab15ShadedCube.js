@@ -35,36 +35,36 @@ var materialShininess = 100.0;
 //
 
 // black plastic
-/*
+//
 var materialAmbient  = vec4(0.0 , 0.0 , 0.0 , 1.0);
 var materialDiffuse  = vec4(0.01 , 0.01 , 0.01 , 1.0);
 var materialSpecular = vec4(0.5 , 0.5 , 0.5, 1.0);
 var materialShininess = 32.0;
-*/
+//
 
 // brass
-/*
+//
 var materialAmbient  = vec4(0.329412 , 0.223529 , 0.027451 , 1.0);
 var materialDiffuse  = vec4(0.780392 , 0.568627 , 0.113725 , 1.0);
 var materialSpecular  = vec4(0.992157 , 0.941176 , 0.807843, 1.0);
 var materialShininess = 27.8974;
-*/
+//
 
 // bronze
-/*
+//
 var materialAmbient  = vec4(0.2125 , 0.1275 , 0.054 , 1.0);
 var materialDiffuse  = vec4(0.714 , 0.4284 , 0.18144 , 1.0);
 var materialSpecular  = vec4(0.393548 , 0.271906 , 0.166721, 1.0);
 var materialShininess = 25.6;
-*/
+//
 
 // chrome
-/*
+//
 var materialAmbient  = vec4(0.25 , 0.25 , 0.25 , 1.0);
 var materialDiffuse  = vec4(0.4 , 0.4 , 0.4 , 1.0);
 var materialSpecular  = vec4(0.774597 , 0.774597 , 0.774597 , 1.0);
 var materialShininess = 76.8;
-*/
+//
 
 // copper
 /*
@@ -83,12 +83,12 @@ var materialShininess = 51.2;
 */
 
 // pewter
-/*
+//
 var materialAmbient  = vec4(0.10588 , 0.058824 , 0.113725 , 1.0);
 var materialDiffuse  = vec4(0.42745 , 0.470588 , 0.541176 , 1.0);
 var materialSpecular  = vec4(0.3333 , 0.3333 , 0.521569 , 1.0);
 var materialShininess = 9.84615;
-*/
+//
 
 // silver
 /*
@@ -99,12 +99,12 @@ var materialShininess = 51.2;
 */
 
 // polished silver
-/*
+//
 var materialAmbient  = vec4(0.23125 , 0.23125 , 0.23125 , 1.0);
 var materialDiffuse  = vec4(0.2775 , 0.2775 , 0.2775 , 1.0);
 var materialSpecular  = vec4(0.773911 , 0.773911 , 0.773911 , 1.0);
 var materialShininess = 89.6;
-*/
+//
 
 var ctm;
 var ambientColor, diffuseColor, specularColor;
